@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flowpage - Landing Page</title>
+    
+    <!-- Polices Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Poppins:wght@600;700;800;900&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- VARIABLES --- */
+        :root {
+            --primary-orange: #D96C48;
+            --bg-dark: #1F1F1F;
+            --bg-card-dark: #262626;
+            --bg-light: #FFFFFF;
+            --bg-beige: #F9F7F2;
+            --bg-green: #83917a;
+            --text-main: #111111;
+            --text-sub: #666666;
+            --spacing-section: 120px;
+            --container-width: 1140px;
+        }
+
+        /* --- RESET & BASE --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-main);
+            background-color: var(--bg-light);
+            line-height: 1.6;
+            font-size: 17px;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.03em;
+        }
+
+        p { margin-bottom: 1rem; }
+
+        .container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .highlight { color: var(--primary-orange); }
+
+        /* --- BOUTONS --- */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--primary-orange);
+            color: white;
+            padding: 16px 32px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: transform 0.2s, background 0.2s;
+            border: none;
+            cursor: pointer;
+        }
+        .btn:hover { background-color: #c75b39; transform: translateY(-2px); }
+        
+        .btn-black { background-color: #111; font-size: 0.9rem; padding: 10px 24px; }
+        .btn-black:hover { background-color: #333; }
+
+        /* --- ICONS SVG --- */
+        .icon-svg {
+            width: 32px;
+            height: 32px;
+            stroke-width: 2;
+            fill: none;
+        }
+        .stroke-orange { stroke: var(--primary-orange); }
+        .stroke-white { stroke: white; }
+        .stroke-green { stroke: var(--bg-green); }
+
+        /* --- HEADER --- */
+        header { padding: 25px 0; }
+        .nav-container { display: flex; justify-content: space-between; align-items: center; }
+        .logo { 
+            font-family: 'Poppins', sans-serif; 
+            font-weight: 700; 
+            font-size: 1.2rem; 
+            display: flex; 
+            align-items: center; 
+            gap: 10px; 
+        }
+        .logo-dot { width: 18px; height: 18px; background-color: var(--primary-orange); border-radius: 50%; }
+
+        /* --- HERO --- */
+        .hero { padding: 100px 0 140px 0; background-color: var(--bg-light); overflow: hidden; }
+        .hero-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 40px; align-items: center; }
+        .hero-text h1 { 
+            font-size: 4.2rem;
+            margin-bottom: 30px; 
+        }
+        .hero-text p { 
+            font-size: 1.1rem; 
+            color: var(--text-sub); 
+            max-width: 500px; 
+            margin-bottom: 40px; 
+        }
+        
+        .mockup-container { position: relative; height: 400px; }
+        .mockup-tablet {
+            position: absolute;
+            top: 20px; left: 20px;
+            width: 420px; height: 280px;
+            background: white;
+            border: 12px solid #E5E5E5;
+            border-radius: 16px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.15);
+            z-index: 1;
+            overflow: hidden;
+        }
+        .mockup-header { height: 120px; background: #f0f0f0; margin-bottom: 15px; }
+        .mockup-line { height: 12px; background: #eee; width: 80%; margin: 10px auto; border-radius: 6px; }
+        .mockup-phone {
+            position: absolute;
+            bottom: 0; right: 20px;
+            width: 140px; height: 280px;
+            background: white;
+            border: 8px solid #E5E5E5;
+            border-radius: 24px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+            z-index: 2;
+        }
+
+        /* --- SECTION DARK --- */
+        .section-dark {
+            background-color: var(--bg-dark);
+            color: white;
+            padding: var(--spacing-section) 0;
+            text-align: center;
+        }
+        .section-dark h2 { font-size: 2.8rem; margin-bottom: 10px; }
+        .section-dark .sub-h2 { 
+            display: block; 
+            color: var(--primary-orange); 
+            font-size: 2.8rem; 
+            font-family: 'Poppins', sans-serif; 
+            font-weight: 800; 
+            margin-bottom: 80px; 
+            line-height: 1;
+        }
+        .problems-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            text-align: left;
+        }
+        .problem-card {
+            background-color: var(--bg-card-dark);
+            padding: 40px 30px;
+            border-radius: 16px;
+            transition: transform 0.3s;
+        }
+        .problem-card:hover { transform: translateY(-5px); }
+        
+        .icon-circle {
+            width: 50px; height: 50px;
+            border: 1px solid rgba(217, 108, 72, 0.3);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            margin-bottom: 25px;
+        }
+        .problem-card h4 { font-size: 1.1rem; margin-bottom: 12px; color: white; }
+        .problem-card p { font-size: 0.9rem; color: #999; line-height: 1.6; margin: 0; }
+
+        /* --- SECTION CLEAR (White) --- */
+        .section-clear { padding: var(--spacing-section) 0; }
+        .section-clear h2 { font-size: 3rem; margin-bottom: 20px; line-height: 1.1; }
+        
+        .badge {
+            display: inline-block;
+            background: #F4F4F4;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            color: #666;
+            margin-bottom: 30px;
+            font-weight: 500;
+        }
+
+        .clear-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            margin-top: 60px;
+        }
+        .clear-item h4 { font-size: 1.1rem; margin-bottom: 10px; margin-top: 20px; }
+        .clear-item p { font-size: 0.95rem; color: var(--text-sub); }
+        .simple-icon { margin-bottom: 10px; }
+
+        /* --- SECTION PROCESS (Beige) --- */
+        .section-process { background-color: var(--bg-beige); padding: var(--spacing-section) 0; }
+        .section-process h2 { text-align: center; font-size: 2.5rem; margin-bottom: 80px; }
+        
+        .timeline { max-width: 800px; margin: 0 auto; position: relative; }
+        .timeline::before {
+            content: ''; position: absolute;
+            left: 28px; top: 0; bottom: 0;
+            width: 2px; background-color: #E0E0E0;
+        }
+        .step { display: flex; gap: 50px; margin-bottom: 60px; position: relative; }
+        .step:last-child { margin-bottom: 0; }
+        
+        .step-num {
+            width: 60px; height: 60px;
+            background: white;
+            border: 2px solid #E0E0E0;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: 700; color: #ccc;
+            flex-shrink: 0; z-index: 2; font-size: 1.1rem;
+        }
+        .step.active .step-num {
+            border-color: var(--primary-orange);
+            background-color: var(--primary-orange);
+            color: white;
+            box-shadow: 0 0 0 6px rgba(217, 108, 72, 0.2);
+        }
+        .step-content { padding-top: 10px; }
+        .step-content h4 { font-size: 1.3rem; margin-bottom: 10px; }
+        .step-content p { color: var(--text-sub); }
+
+        /* --- SECTION EXAMPLES --- */
+        .section-examples { padding: var(--spacing-section) 0; }
+        .section-examples h2 { text-align: center; font-size: 2.5rem; margin-bottom: 80px; }
+        .examples-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
+        
+        .example-card { border: 1px solid #EEE; border-radius: 12px; overflow: hidden; transition: transform 0.3s; }
+        .example-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0,0,0,0.08); }
+        .card-img { height: 220px; background-color: #333; position: relative; }
+        
+        .c-img-1 { background: linear-gradient(135deg, #1a1a1a, #4a0000); }
+        .c-img-2 { background: linear-gradient(to top, #8e9eab, #eef2f3); }
+        .c-img-3 { background: linear-gradient(45deg, #141E30, #243B55); }
+
+        .card-body { padding: 30px; }
+        .card-body .tag { 
+            font-size: 0.7rem; color: var(--primary-orange); 
+            text-transform: uppercase; letter-spacing: 1px; font-weight: 700; 
+            margin-bottom: 10px; display: block;
+        }
+        .card-body h4 { font-size: 1.1rem; margin-bottom: 10px; line-height: 1.4; }
+        .card-body p { font-size: 0.9rem; color: var(--text-sub); margin-bottom: 20px; }
+        .btn-outline {
+            font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;
+            color: #111; text-decoration: none; border-bottom: 1px solid #ddd; padding-bottom: 2px;
+        }
+
+        /* --- SECTION COMPARISON --- */
+        .section-compare { padding: var(--spacing-section) 0; }
+        .compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; }
+        .compare-col {
+            background: #FAFAFA;
+            padding: 50px;
+            border-radius: 20px;
+        }
+        .compare-col h3 { font-size: 1.4rem; margin-bottom: 30px; }
+        .c-yes h3 { color: var(--bg-green); }
+        .c-no h3 { color: #999; }
+        
+        .check-list { list-style: none; }
+        .check-list li { 
+            display: flex; gap: 15px; margin-bottom: 20px; 
+            font-size: 1rem; color: #333; 
+        }
+        .c-no .check-list li { color: #888; }
+        
+        .check-mark { color: var(--bg-green); font-weight: bold; }
+        .cross-mark { color: #CCC; font-weight: bold; }
+
+        /* --- SECTION ABOUT --- */
+        .section-about { text-align: center; padding: 60px 0 60px 0; }
+        .avatar-img { 
+            width: 90px; height: 90px; border-radius: 50%; background: #ccc; 
+            margin: 0 auto 25px; object-fit: cover;
+            background-image: url('https://i.pravatar.cc/150?img=11');
+        }
+        .section-about p { max-width: 600px; margin: 0 auto; color: var(--text-sub); font-size: 1rem; }
+
+        /* --- SECTION FAQ (NEW) --- */
+        .section-faq {
+            padding: 80px 0 120px 0;
+            background-color: var(--bg-light);
+        }
+        .faq-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        .faq-header h2 { margin-bottom: 10px; font-size: 2.2rem; }
+        .faq-header p { color: var(--text-sub); }
+
+        .faq-wrapper {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid #E5E5E5;
+            margin-bottom: 15px;
+        }
+
+        .faq-item summary {
+            padding: 24px 0;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1.1rem;
+            list-style: none; /* Cache la flèche par défaut */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--text-main);
+            transition: color 0.2s;
+        }
+
+        .faq-item summary::-webkit-details-marker { display: none; }
+
+        .faq-item summary:hover {
+            color: var(--primary-orange);
+        }
+
+        .faq-icon {
+            font-size: 1.5rem;
+            font-weight: 300;
+            color: var(--primary-orange);
+            transition: transform 0.3s ease;
+            line-height: 1;
+        }
+
+        /* Animation de rotation quand ouvert */
+        .faq-item[open] .faq-icon {
+            transform: rotate(45deg);
+        }
+
+        .faq-content {
+            color: var(--text-sub);
+            padding-bottom: 24px;
+            padding-right: 40px;
+            line-height: 1.7;
+            font-size: 1rem;
+            /* Animation d'apparition douce */
+            animation: fadeIn 0.4s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- CONTACT --- */
+        .section-contact { background-color: var(--bg-beige); padding: var(--spacing-section) 0; }
+        .contact-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+        .contact-left h2 { font-size: 3rem; margin-bottom: 20px; }
+        .dots-deco { display: flex; gap: 12px; margin-top: 30px; }
+        .dot { width: 40px; height: 40px; border-radius: 50%; }
+        .d1 { background: #D1D5DB; } .d2 { background: #9CA3AF; } .d3 { background: var(--primary-orange); }
+
+        .form-box {
+            background: white;
+            padding: 50px;
+            border-radius: 24px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.03);
+        }
+        .input-group { margin-bottom: 20px; }
+        .input-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        label { display: block; font-weight: 600; font-size: 0.85rem; margin-bottom: 8px; color: #333; }
+        input, textarea {
+            width: 100%; padding: 16px; border: 1px solid #E5E5E5;
+            border-radius: 8px; background: #FAFAFA; font-size: 1rem; font-family: inherit;
+        }
+        input:focus, textarea:focus { outline: 1px solid var(--primary-orange); background: white; }
+        .submit-btn {
+            width: 100%; padding: 18px; background: var(--primary-orange); color: white;
+            border: none; border-radius: 12px; font-weight: 700; font-size: 1.1rem; cursor: pointer;
+        }
+
+        /* --- FOOTER --- */
+        footer { padding: 50px 0; border-top: 1px solid #eee; background: white; }
+        .footer-content { display: flex; justify-content: space-between; color: #999; font-size: 0.9rem; }
+        .f-logo { font-weight: 700; color: #333; }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 900px) {
+            .hero-grid, .problems-grid, .clear-grid, .examples-grid, .compare-grid, .contact-layout, .input-row {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            .hero-text h1 { font-size: 3rem; }
+            .section-dark h2, .section-dark .sub-h2 { font-size: 2rem; }
+            .mockup-container { display: none; }
+            .section-clear h2 { font-size: 2.2rem; }
+            .compare-col { padding: 30px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container nav-container">
+            <div class="logo">
+                <div class="logo-dot"></div>
+                Flowpage
+            </div>
+            <a href="#" class="btn btn-black">Me connecter</a>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container hero-grid">
+            <div class="hero-text">
+                <h1>Votre page web doit vous apporter des <span class="highlight">clients.</span></h1>
+                <p>Une bonne landing page ne sert pas à faire joli. Elle doit convertir vos visiteurs en clients. Transformez votre présence en outil de vente.</p>
+                <a href="#" class="btn">Demander ma page</a>
+            </div>
+            <!-- Mockup visuel -->
+            <div class="mockup-container">
+                <div class="mockup-tablet">
+                    <div class="mockup-header"></div>
+                    <div class="mockup-line"></div>
+                    <div class="mockup-line" style="width: 60%"></div>
+                </div>
+                <div class="mockup-phone"></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-dark">
+        <div class="container">
+            <h2>Beaucoup de sites existent.</h2>
+            <span class="sub-h2">Peu apportent des contacts.</span>
+            
+            <div class="problems-grid">
+                <!-- Card 1 -->
+                <div class="problem-card">
+                    <div class="icon-circle">
+                        <!-- SVG Exclamation -->
+                        <svg class="icon-svg stroke-orange" viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="12" y1="8" x2="12" y2="12"></line>
+                            <line x1="12" y1="16" x2="12" y2="16"></line>
+                        </svg>
+                    </div>
+                    <h4>Trop d'informations</h4>
+                    <p>Le visiteur se perd dans les menus, les liens et quitte la page rapidement.</p>
+                </div>
+                <!-- Card 2 -->
+                <div class="problem-card">
+                    <div class="icon-circle">
+                        <!-- SVG Cross -->
+                        <svg class="icon-svg stroke-orange" viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="15" y1="9" x2="9" y2="15"></line>
+                            <line x1="9" y1="9" x2="15" y2="15"></line>
+                        </svg>
+                    </div>
+                    <h4>Pas d'action claire</h4>
+                    <p>Pas d'appel à l'action ou bouton visible pour contacter ou acheter.</p>
+                </div>
+                <!-- Card 3 -->
+                <div class="problem-card">
+                    <div class="icon-circle">
+                        <!-- SVG Mobile warning -->
+                        <svg class="icon-svg stroke-orange" viewBox="0 0 24 24">
+                            <rect x="7" y="4" width="10" height="16" rx="2"></rect>
+                            <line x1="11" y1="17" x2="13" y2="17"></line>
+                            <line x1="10" y1="10" x2="14" y2="14"></line>
+                            <line x1="14" y1="10" x2="10" y2="14"></line>
+                        </svg>
+                    </div>
+                    <h4>Moche sur mobile</h4>
+                    <p>Plus de 70% du trafic est mobile. Si ce n'est pas optimisé, vous perdez tout.</p>
+                </div>
+                <!-- Card 4 -->
+                <div class="problem-card">
+                    <div class="icon-circle">
+                        <!-- SVG Question -->
+                        <svg class="icon-svg stroke-orange" viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                            <line x1="12" y1="17" x2="12" y2="17"></line>
+                        </svg>
+                    </div>
+                    <h4>Manque de guide</h4>
+                    <p>Le client ne comprend pas l'offre en moins de 5 secondes.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-clear">
+        <div class="container">
+            <span class="badge">Méthode Flowpage</span>
+            <h2>Une page claire.<br>Un seul objectif.</h2>
+            
+            <div class="clear-grid">
+                <div class="clear-item">
+                    <!-- Icon Layout -->
+                    <svg class="icon-svg stroke-orange simple-icon" viewBox="0 0 24 24">
+                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                        <line x1="3" y1="9" x2="21" y2="9"></line>
+                        <line x1="9" y1="21" x2="9" y2="9"></line>
+                    </svg>
+                    <h4>Page idéale</h4>
+                    <p>Un design épuré pour focaliser l'attention sur votre offre.</p>
+                </div>
+                <div class="clear-item">
+                    <!-- Icon Flash -->
+                    <svg class="icon-svg stroke-orange simple-icon" viewBox="0 0 24 24">
+                        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                    </svg>
+                    <h4>Compréhension Flash</h4>
+                    <p>En 3 secondes, le visiteur sait qui vous êtes.</p>
+                </div>
+                <div class="clear-item">
+                    <!-- Icon Touch/Action -->
+                    <svg class="icon-svg stroke-orange simple-icon" viewBox="0 0 24 24">
+                        <path d="M12 2a10 10 0 1 0 10 10H12V2z"></path>
+                        <path d="M12 12 2.1 12.1"></path>
+                    </svg>
+                    <h4>Appel à l'Action</h4>
+                    <p>Des boutons clairs pour faciliter la prise de RDV.</p>
+                </div>
+                <div class="clear-item">
+                    <!-- Icon Mobile First -->
+                    <svg class="icon-svg stroke-orange simple-icon" viewBox="0 0 24 24">
+                        <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+                        <line x1="12" y1="18" x2="12" y2="18"></line>
+                    </svg>
+                    <h4>Mobile-First</h4>
+                    <p>Conçu d'abord pour l'écran de smartphone.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-process">
+        <div class="container">
+            <h2>Comment ça se passe, concrètement ?</h2>
+            
+            <div class="timeline">
+                <div class="step">
+                    <div class="step-num">01</div>
+                    <div class="step-content">
+                        <h4>Vous m'expliquez</h4>
+                        <p>On discute de votre activité. Je récupère vos textes, photos et logo. Si vous n'avez rien, on crée ensemble.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-num">02</div>
+                    <div class="step-content">
+                        <h4>Je crée la page</h4>
+                        <p>Je m'occupe de tout : design, développement, mise en ligne. Simple, moderne et optimisé.</p>
+                    </div>
+                </div>
+                <div class="step active">
+                    <div class="step-num">03</div>
+                    <div class="step-content">
+                        <h4>Vous recevez des contacts</h4>
+                        <p>Votre page est en ligne 24h/24. Les visiteurs intéressés vous appellent ou vous écrivent directement.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-examples">
+        <div class="container">
+            <h2>À quoi ressemble une page Flowpage ?</h2>
+            <div class="examples-grid">
+                <div class="example-card">
+                    <div class="card-img c-img-1"></div>
+                    <div class="card-body">
+                        <span class="tag">Sport & Santé</span>
+                        <h4>Une salle de Gym/Crossfit</h4>
+                        <p>Présentation du lieu, planning et inscription à l'essai.</p>
+                        <a href="#" class="btn-outline">Voir l'exemple</a>
+                    </div>
+                </div>
+                <div class="example-card">
+                    <div class="card-img c-img-2"></div>
+                    <div class="card-body">
+                        <span class="tag">Bien-être</span>
+                        <h4>Sophie : Prof de Yoga</h4>
+                        <p>Page perso. Philosophie et réservation de cours.</p>
+                        <a href="#" class="btn-outline">Voir l'exemple</a>
+                    </div>
+                </div>
+                <div class="example-card">
+                    <div class="card-img c-img-3"></div>
+                    <div class="card-body">
+                        <span class="tag">Consulting</span>
+                        <h4>Marc Dupont : Marketing</h4>
+                        <p>Mise en avant de l'expertise et prise de contact B2B.</p>
+                        <a href="#" class="btn-outline">Voir l'exemple</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NOTE: La section Green (Stats) a été supprimée ici -->
+
+    <section class="section-compare">
+        <div class="container">
+            <div class="compare-grid">
+                <div class="compare-col c-yes">
+                    <h3>C'est fait pour vous si...</h3>
+                    <ul class="check-list">
+                        <li><span class="check-mark">✓</span> Vous voulez être contacté facilement</li>
+                        <li><span class="check-mark">✓</span> Vous voulez une image pro</li>
+                        <li><span class="check-mark">✓</span> Vous comprenez que le web est vital</li>
+                        <li><span class="check-mark">✓</span> Vous voulez des résultats rapides</li>
+                    </ul>
+                </div>
+                <div class="compare-col c-no">
+                    <h3>Ce n'est pas pour vous si...</h3>
+                    <ul class="check-list">
+                        <li><span class="cross-mark">✕</span> Vous voulez un e-commerce complexe</li>
+                        <li><span class="cross-mark">✕</span> Vous avez besoin d'un espace membre</li>
+                        <li><span class="cross-mark">✕</span> Vous voulez un site de 50 pages</li>
+                        <li><span class="cross-mark">✕</span> Vous pensez que le design est inutile</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-about">
+        <div class="container">
+            <div class="avatar-img"></div>
+            <h3>Qui est derrière Flowpage ?</h3>
+            <p>Moi, c'est Alex, développeur web spécialisé dans l'efficacité. J'ai créé Flowpage pour aider les indépendants à arrêter de perdre des clients à cause de sites trop compliqués.</p>
+        </div>
+    </section>
+
+    <!-- NOUVELLE SECTION FAQ -->
+    <section class="section-faq">
+        <div class="container">
+            <div class="faq-header">
+                <h2>Questions fréquentes</h2>
+                <p>Tout ce que vous devez savoir avant de vous lancer.</p>
+            </div>
+            
+            <div class="faq-wrapper">
+                <!-- Q1 -->
+                <details class="faq-item">
+                    <summary>Est-ce que Flowpage est adapté à mon activité ? <span class="faq-icon">+</span></summary>
+                    <div class="faq-content">
+                        Flowpage est conçu pour les indépendants, freelances et petits business locaux qui ont besoin d’une page claire pour être contactés facilement.
+                        Si vous vendez un service et que vos clients vous contactent par message, téléphone ou formulaire, Flowpage est adapté.
+                    </div>
+                </details>
+
+                <!-- Q2 -->
+                <details class="faq-item">
+                    <summary>Est-ce que c’est un site complet ou une seule page ? <span class="faq-icon">+</span></summary>
+                    <div class="faq-content">
+                        Flowpage crée des pages uniques (landing pages), pensées pour aller droit au but.
+                        Dans certains cas, une seule page bien conçue est plus efficace qu’un site complexe avec plusieurs menus.
+                    </div>
+                </details>
+
+                <!-- Q3 -->
+                <details class="faq-item">
+                    <summary>Est-ce que je pourrai modifier le contenu plus tard ? <span class="faq-icon">+</span></summary>
+                    <div class="faq-content">
+                        Oui. La page peut être pensée pour évoluer, et certaines modifications simples peuvent être faites sans tout refaire.
+                        Si besoin, Flowpage peut aussi vous accompagner dans les mises à jour.
+                    </div>
+                </details>
+
+                <!-- Q4 -->
+                <details class="faq-item">
+                    <summary>Combien de temps faut-il pour créer une page ? <span class="faq-icon">+</span></summary>
+                    <div class="faq-content">
+                        En général, une page Flowpage peut être conçue et mise en ligne en quelques jours, selon la clarté du projet et des contenus fournis.
+                    </div>
+                </details>
+
+                <!-- Q5 -->
+                <details class="faq-item">
+                    <summary>Est-ce que Flowpage s’occupe de l’hébergement et de la mise en ligne ? <span class="faq-icon">+</span></summary>
+                    <div class="faq-content">
+                        Oui. Flowpage peut s’occuper de la mise en ligne complète de votre page, pour que vous n’ayez rien à gérer techniquement.
+                    </div>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-contact">
+        <div class="container contact-layout">
+            <div class="contact-left">
+                <h2>Envie d'une page claire qui vous apporte des contacts ?</h2>
+                <p>Discutons de votre projet. C'est sans engagement, juste une opportunité de voir comment améliorer votre présence en ligne.</p>
+                <div class="dots-deco">
+                    <div class="dot d1"></div>
+                    <div class="dot d2"></div>
+                    <div class="dot d3"></div>
+                </div>
+            </div>
+            
+            <div class="form-box">
+                <form>
+                    <div class="input-row">
+                        <div class="input-group">
+                            <label>Votre nom</label>
+                            <input type="text" placeholder="Jean Dupont">
+                        </div>
+                        <div class="input-group">
+                            <label>Email</label>
+                            <input type="email" placeholder="jean@email.com">
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label>Votre activité</label>
+                        <input type="text" placeholder="ex: Coach, Artisan...">
+                    </div>
+                    <div class="input-group">
+                        <label>Message</label>
+                        <textarea rows="4" placeholder="Dites-moi en plus..."></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Envoyer ma demande</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container footer-content">
+            <div class="f-logo">Flowpage</div>
+            <div>© 2024 Flowpage. Tous droits réservés.</div>
+            <div>Mentions Légales</div>
+        </div>
+    </footer>
+
+</body>
+</html>
